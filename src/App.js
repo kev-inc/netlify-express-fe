@@ -46,8 +46,8 @@ function App() {
   });
   return (
     <div className="App container text-left">
-      <h1>My Todos</h1>
-      <div className="shadow-sm">
+      <h1 className="display-4 p-2 text-center">My Todos</h1>
+      <div className="shadow">
         <ListGroup>
           <ListGroup.Item>
             <InputGroup>
@@ -68,9 +68,10 @@ function App() {
           </ListGroup.Item>
           {loaded ? (
             todos.map((todo, index) => (
-              <ListGroup.Item key={index}>
+              <ListGroup.Item key={index} className="d-flex">
+                <span className="mr-auto">{todo.message}</span>
                 <Button
-                  className="mr-2 text-warning"
+                  className="text-warning"
                   variant="light"
                   size="sm"
                   onClick={() => editTodo(todo._id)}
@@ -78,14 +79,13 @@ function App() {
                   <FontAwesomeIcon icon={faPen} />
                 </Button>
                 <Button
-                  className="mr-2 text-danger"
+                  className="ml-2 text-danger"
                   variant="light"
                   size="sm"
                   onClick={() => deleteTodo(todo._id)}
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </Button>
-                <span>{todo.message}</span>
               </ListGroup.Item>
             ))
           ) : (
@@ -97,6 +97,9 @@ function App() {
           )}
         </ListGroup>
       </div>
+      <small className="text-muted">
+        Changes made to the todo list may take a few seconds to update
+      </small>
     </div>
   );
 }
